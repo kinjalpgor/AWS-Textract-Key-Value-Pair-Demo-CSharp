@@ -16,14 +16,14 @@ namespace CSharpAWSTextract
                         
             const string LocalEmploymentFile = "TextractImages/invoice1.png";
 
-            TextExtractDemo.get_kv_map(LocalEmploymentFile);
+            TextExtractDemo.Get_kv_map(LocalEmploymentFile);
 
         }
 
     }
     public class TextExtractDemo
     {
-        public static void get_kv_map(string LocalEmploymentFile)
+        public static void Get_kv_map(string LocalEmploymentFile)
         {
             var readFile = File.ReadAllBytes(LocalEmploymentFile);
 
@@ -82,6 +82,7 @@ namespace CSharpAWSTextract
             }
 
         }
+
         public static Dictionary<string, string> get_kv_relationship(List<Block> key_map, List<Block> value_map, List<Block> block_map)
         {
             List<string> kvs1 = new List<string>();
@@ -90,9 +91,9 @@ namespace CSharpAWSTextract
             string key, val = string.Empty;
             foreach (var block in key_map)
             {
-                value_block = find_value_block(block, value_map);
-                key = get_text(block, block_map);
-                val = get_text(value_block, block_map);
+                value_block = Find_value_block(block, value_map);
+                key = Get_text(block, block_map);
+                val = Get_text(value_block, block_map);
                 kvs.Add(key, val);
             }
 
@@ -100,7 +101,7 @@ namespace CSharpAWSTextract
 
         }
 
-        public static Block find_value_block(Block block, List<Block> value_map)
+        public static Block Find_value_block(Block block, List<Block> value_map)
         {
             Block value_block = new Block();
             foreach (var relationship in block.Relationships)
@@ -119,7 +120,7 @@ namespace CSharpAWSTextract
 
         }
 
-        public static string get_text(Block result, List<Block> block_map)
+        public static string Get_text(Block result, List<Block> block_map)
         {
             string text = string.Empty;
             Block word = new Block();
